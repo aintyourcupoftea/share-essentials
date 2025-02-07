@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Status Update</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            text-align: left;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            background-color: green;
+            color: white;
+            width: 100%;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+        .confirmation {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-radius: 5px;
+            font-weight: bold;
+            display: none;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Update Delivery Status</h2>
+        
+        <label for="booking-id">Enter Booking ID:</label>
+        <input type="text" id="booking-id" maxlength="12" placeholder="Enter 12-digit Booking ID">
+        <button onclick="searchBooking()">Search</button>
+
+        <div class="error" id="error-message">Invalid Booking ID! Please enter a 12-digit number.</div>
+
+        <div id="update-form" style="display: none;">
+            <label for="current-status">Current Status:</label>
+            <input type="text" id="current-status" readonly>
+
+            <label for="new-status">Update Status:</label>
+            <select id="new-status">
+                <option value="Picked Up">Picked Up</option>
+                <option value="In Transit">In Transit</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Returned">Returned</option>
+            </select>
+
+            <button onclick="saveDeliveryUpdate()">Update Status</button>
+        </div>
+
+        <div class="confirmation" id="confirmation-message">Delivery status updated successfully!</div>
+    </div>
+
+    <script>
+        function searchBooking() {
+            let bookingId = document.getElementById("booking-id").value.trim();
+            let errorMessage = document.getElementById("error-message");
+            let updateForm = document.getElementById("update-form");
+            let currentStatus = document.getElementById("current-status");
+
+            if (bookingId.length !== 12 || isNaN(bookingId)) {
+                errorMessage.style.display = "block";
+                updateForm.style.display = "none";
+                return;
+            }
+
+            errorMessage.style.display = "none";
+            updateForm.style.display = "block";
+
+           
+            let statuses = ["Picked Up", "In Transit", "Delivered", "Returned"];
+            currentStatus.value = statuses[Math.floor(Math.random() * statuses.length)];
+        }
+
+        function saveDeliveryUpdate() {
+            let newStatus = document.getElementById("new-status").value;
+            let confirmationMessage = document.getElementById("confirmation-message");
+
+            if (!newStatus) {
+                alert("Please select a status to update.");
+                return;
+            }
+
+            confirmationMessage.style.display = "block";
+        }
+    </script>
+</body>
+</html>

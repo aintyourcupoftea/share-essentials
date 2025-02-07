@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Parcel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            text-align: left;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            background-color: green;
+            color: white;
+            width: 100%;
+        }
+        button:hover {
+            background-color: darkgreen;
+        }
+        .tracking-status {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-radius: 5px;
+            font-weight: bold;
+            display: none;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Track Your Parcel</h2>
+        <label for="booking-id">Enter Booking ID:</label>
+        <input type="text" id="booking-id" maxlength="12" placeholder="Enter 12-digit Booking ID">
+        <button onclick="trackParcel()">Search</button>
+
+        <div class="error" id="error-message">Invalid Booking ID! Please enter a 12-digit number.</div>
+        <div class="tracking-status" id="tracking-status"></div>
+    </div>
+
+    <script>
+        function trackParcel() {
+            let bookingId = document.getElementById("booking-id").value.trim();
+            let trackingStatus = document.getElementById("tracking-status");
+            let errorMessage = document.getElementById("error-message");
+
+            if (bookingId.length !== 12 || isNaN(bookingId)) {
+                errorMessage.style.display = "block";
+                trackingStatus.style.display = "none";
+                return;
+            }
+
+            errorMessage.style.display = "none";
+
+          
+            let statuses = [
+          
+            ];
+            let randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+
+            trackingStatus.innerText = `Booking ID: ${bookingId} - Status: ${randomStatus}`;
+            trackingStatus.style.display = "block";
+        }
+    </script>
+</body>
+</html>
