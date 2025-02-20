@@ -18,6 +18,7 @@
             --accent-color: #dbeafe;
         }
 
+        /* Navbar Styles */
         .navbar {
             background: white;
             padding: 1rem 5%;
@@ -41,6 +42,7 @@
             display: flex;
             gap: 1rem;
         }
+        
 
         .btn {
             padding: 0.8rem 1.5rem;
@@ -67,24 +69,41 @@
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
         }
 
+        /* Hero Section */
         .hero {
             height: 100vh;
             background: linear-gradient(135deg, #fff, var(--accent-color));
             display: flex;
-            align-items: center;
+            justify-content: center;
+            text-align: center;
             padding: 0 5%;
             margin-top: 60px;
+            position: relative;
         }
 
         .hero-content {
-            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 800px;
+            z-index: 10;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
+        .hero-content h1 {
+            font-size: 3rem;
             margin-bottom: 1.5rem;
             color: #1e293b;
         }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
 
         .hero p {
             font-size: 1.2rem;
@@ -93,6 +112,7 @@
             line-height: 1.6;
         }
 
+        /* Features Section */
         .features {
             padding: 5rem 5%;
             display: grid;
@@ -136,12 +156,20 @@
             line-height: 1.6;
         }
 
+        /* Responsive Design */
         @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 2%;
+            }
+
             .nav-buttons {
                 display: none;
             }
 
-            .hero h1 {
+            .hero {
+                padding: 0 2%;
+            }
+            .hero-content h1 {
                 font-size: 2.5rem;
             }
 
@@ -166,6 +194,9 @@
             <h1>Fast & Secure Parcel Delivery at Your Fingertips</h1>
             <p>Experience seamless parcel management with real-time tracking, secure handling, and lightning-fast delivery across the globe.</p>
             <button class="btn btn-primary" onclick="handleGetStarted()">Get Started →</button>
+            
+           
+                    
         </div>
     </section>
 
